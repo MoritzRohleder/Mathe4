@@ -15,8 +15,8 @@ public class NewtonVerfahren {
 	public static LinkedList<Double> calculateNewtonVerfahren(double x) {
 		LinkedList<Double> result = new LinkedList<>();
 		result.add(x);
-		while(checkKonvergenzKriterium(x)) {
-			x = calculateIterationsSchritt(x);
+		while(checkKonvergenzKriteriumF(x)) {
+			x = calculateIterationsSchrittF(x);
 			if(checkGleichheit(x, result.getLast())) {
 				System.out.printf("%s ist gleich %s mit einer Genauigkeit von %s Nachkommastellen\n", x,
 				                  result.getLast(), genauigkeit);
@@ -26,27 +26,61 @@ public class NewtonVerfahren {
 			result.add(x);
 		}
 		System.out.printf("Konvergenzkriterium wurde nicht erfüllt bei x = %s\n", x);
+		result.clear();
+		return result;
+	}
+
+	public static LinkedList<Double> calculateNewtonVerfahrenIntervall(double x, double linkeGrenze,
+	                                                                   double rechteGrenze) {
+		LinkedList<Double> result = new LinkedList<>();
+		result.add(x);
+		while(checkKonvergenzKriteriumG(x) && x >= linkeGrenze && x <= rechteGrenze) {
+			x = calculateIterationsSchrittG(x);
+			if(checkGleichheit(x, result.getLast())) {
+				System.out.printf("%s ist gleich %s mit einer Genauigkeit von %s Nachkommastellen\n", x,
+				                  result.getLast(), genauigkeit);
+				result.add(x);
+				return result;
+			}
+			result.add(x);
+		}
+		if(!checkKonvergenzKriteriumG(x)) {
+			System.out.printf("Konvergenzkriterium wurde nicht erfüllt bei x = %s\n", x);
+		} else if ( x < linkeGrenze && x > rechteGrenze) {
+			System.out.printf("Der Wert %s liegt nicht im Intervall [%s, %s]\n", x, linkeGrenze, rechteGrenze);
+		}
+		result.clear();
 		return result;
 	}
 
 	/**
 	 * Berechnet den nächsten Iterationsschritt für das Newton-Verfahren.
+	 * Als Grundlage dient Funktion f(x)
 	 *
 	 * @param x der aktuelle Wert der Iteration
 	 * @return der nächste Wert der Iteration
 	 */
-	private static double calculateIterationsSchritt(double x) {
+	private static double calculateIterationsSchrittF(double x) {
 		return x - Main.funktionF(x)/Main.funktionFStrich(x);
 	}
 
 	/**
 	 * Überprüft das Konvergenzkriterium für den gegebenen Wert x.
+	 * Als Grundlage dient Funktion f(x)
 	 *
 	 * @param x der Wert, für den das Konvergenzkriterium überprüft werden soll
 	 * @return true, wenn das Konvergenzkriterium erfüllt ist, andernfalls false
 	 */
-	private static boolean checkKonvergenzKriterium(double x) {
+	private static boolean checkKonvergenzKriteriumF(double x) {
 		return Math.abs((Main.funktionF(x) * Main.funktionFStrichStrich(x))/Math.pow(2, Main.funktionFStrich(x))) < 1;
+	}
+
+	private static double calculateIterationsSchrittG(double x) {
+		return x - Main.funktionG(x)/Main.funktionGStrich(x);
+	}
+
+	private static boolean checkKonvergenzKriteriumG(double x) {
+		return Math.abs((Main.funktionG(x) * Main.funktionGStrichStrich(x))/Math.pow(2, Main.funktionGStrich(x))) < 1;
 	}
 
 	/**
@@ -58,7 +92,7 @@ public class NewtonVerfahren {
 	 * @return true if the value x is equal to the last result in the list, otherwise false
 	 */
 	public static boolean checkGleichheit(double x, Double lastResult) {
-	    double scale = Math.pow(10, genauigkeit-1);
+	    double scale = Math.pow(10, genauigkeit);
 	    return Math.round(x * scale) == Math.round(lastResult * scale);
 	}
 }
