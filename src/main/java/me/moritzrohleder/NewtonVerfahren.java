@@ -30,6 +30,14 @@ public class NewtonVerfahren {
 		return result;
 	}
 
+	/**
+	 * Berechnet die Iterationen des Newton-Verfahrens für einen gegebenen Startwert innerhalb eines Intervalls.
+	 *
+	 * @param x der Startwert für das Newton-Verfahren
+	 * @param linkeGrenze die linke Grenze des Intervalls
+	 * @param rechteGrenze die rechte Grenze des Intervalls
+	 * @return eine LinkedList mit den berechneten Werten der Iterationen
+	 */
 	public static LinkedList<Double> calculateNewtonVerfahrenIntervall(double x, double linkeGrenze,
 	                                                                   double rechteGrenze) {
 		LinkedList<Double> result = new LinkedList<>();
@@ -61,7 +69,7 @@ public class NewtonVerfahren {
 	 * @return der nächste Wert der Iteration
 	 */
 	private static double calculateIterationsSchrittF(double x) {
-		return x - Main.funktionF(x)/Main.funktionFStrich(x);
+		return x - NewtonMenu.funktionF(x)/NewtonMenu.funktionFStrich(x);
 	}
 
 	/**
@@ -72,15 +80,15 @@ public class NewtonVerfahren {
 	 * @return true, wenn das Konvergenzkriterium erfüllt ist, andernfalls false
 	 */
 	private static boolean checkKonvergenzKriteriumF(double x) {
-		return Math.abs((Main.funktionF(x) * Main.funktionFStrichStrich(x))/Math.pow(2, Main.funktionFStrich(x))) < 1;
+		return Math.abs((NewtonMenu.funktionF(x) * NewtonMenu.funktionFStrichStrich(x))/Math.pow(2, NewtonMenu.funktionFStrich(x))) < 1;
 	}
 
 	private static double calculateIterationsSchrittG(double x) {
-		return x - Main.funktionG(x)/Main.funktionGStrich(x);
+		return x - NewtonMenu.funktionG(x)/NewtonMenu.funktionGStrich(x);
 	}
 
 	private static boolean checkKonvergenzKriteriumG(double x) {
-		return Math.abs((Main.funktionG(x) * Main.funktionGStrichStrich(x))/Math.pow(2, Main.funktionGStrich(x))) < 1;
+		return Math.abs((NewtonMenu.funktionG(x) * NewtonMenu.funktionGStrichStrich(x))/Math.pow(2, NewtonMenu.funktionGStrich(x))) < 1;
 	}
 
 	/**
