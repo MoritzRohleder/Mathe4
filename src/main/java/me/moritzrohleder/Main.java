@@ -7,11 +7,11 @@ public class Main {
 	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.out.println("Newton-Verfahren für f(x) = x^2 - 2*cos(x)\n "
-		                  + "Erste Ableitung: f'(x) = 2*x + 2*sin(x)\n "
-		                  + "Zweite Ableitung: f''(x) = 2 + 2*cos(x)\n "
-		                  + "\n "
-		                  + "Bitte geben Sie den Startwert für das Newton-Verfahren ein: ");
+		System.out.println("Newton-Verfahren für f(x) = x^2 - 2*cos(x)\n"
+		                  + "Erste Ableitung: f'(x) = 2*x + 2*sin(x)\n"
+		                  + "Zweite Ableitung: f''(x) = 2 + 2*cos(x)\n"
+		                  + "\n"
+		                  + "Bitte geben Sie den Startwert für das Newton-Verfahren ein:");
 		double startwert = scanner.nextDouble();
 		System.out.printf("Startwert: %s\n", startwert);
 
