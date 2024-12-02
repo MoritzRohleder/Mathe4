@@ -100,7 +100,7 @@ public class NewtonVerfahren {
 	 * @return true if the value x is equal to the last result in the list, otherwise false
 	 */
 	public static boolean checkGleichheit(double x, Double lastResult) {
-	    double scale = Math.pow(10, genauigkeit);
+	    double scale = Math.pow(10, genauigkeit+1);
 	    return Math.round(x * scale) == Math.round(lastResult * scale);
 	}
 }
