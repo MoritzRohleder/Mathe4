@@ -80,7 +80,7 @@ public class NewtonVerfahren {
 	 * @return true, wenn das Konvergenzkriterium erfüllt ist, andernfalls false
 	 */
 	private static boolean checkKonvergenzKriteriumF(double x) {
-		return Math.abs((NewtonMenu.funktionF(x) * NewtonMenu.funktionFStrichStrich(x))/Math.pow(2, NewtonMenu.funktionFStrich(x))) < 1;
+		return Math.abs((NewtonMenu.funktionF(x) * NewtonMenu.funktionFStrichStrich(x))/Math.pow(NewtonMenu.funktionFStrich(x), 2)) < 1;
 	}
 
 	private static double calculateIterationsSchrittG(double x) {
