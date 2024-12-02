@@ -29,7 +29,7 @@ public class SimpsonRegel {
 	}
 
 	private static double calculateSchrittweite(double a, double b, int n) {
-		return (b-a)/2*n;
+		return (b-a)/(2*n);
 	}
 
 	private static double calculateSumBorderValues(LinkedList<Double> values) {
