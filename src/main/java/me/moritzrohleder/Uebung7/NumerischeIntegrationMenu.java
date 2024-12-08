@@ -1,4 +1,4 @@
-package me.moritzrohleder;
+package me.moritzrohleder.Uebung7;
 
 import java.util.Scanner;
 
