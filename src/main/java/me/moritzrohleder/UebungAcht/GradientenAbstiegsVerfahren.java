@@ -11,7 +11,7 @@ public class GradientenAbstiegsVerfahren {
 	public static boolean isMaxVerfahren = true;
 
 	public static void gradientenVerfahren(double x, double lambda, double epsilon) {
-		double h = 0.01; //ToDo: Fragen: Wie wähle ich den Wert h für die Differenzenformel?
+		double h = 0.01;
 		double oldX;
 		double newX = x;
 		do {
@@ -20,15 +20,20 @@ public class GradientenAbstiegsVerfahren {
 				newX = oldX + lambda * gradient(oldX, h);
 				if(f(newX) <= f(oldX)) {
 					lambda = lambda/2;
+					System.out.println("Lambda: " + lambda + " f(newX): " + f(newX) + " f(oldX): " + f(oldX));
 				} else {
 					lambda = f(newX + (lambda*2) * gradient(newX, h)) > f(newX) ? (lambda * 2) : lambda;
+					System.out.println("Lambda: " + lambda + " f(newX): " + f(newX) + " f(oldX): " + f(oldX));
 				}
 			} else { //Minimum Berechnung
 				newX = oldX - lambda * gradient(oldX, h);
 				if(f(newX) >= f(oldX)) {
+					//Eigentlich als schleife, gucken bis man ein passendes Lambda hat
 					lambda = lambda/2;
+					System.out.println("Lambda: " + lambda + " f(newX): " + f(newX) + " f(oldX): " + f(oldX));
 				} else {
 					lambda = f(newX - (lambda*2) * gradient(newX, h)) < f(newX) ? (lambda * 2) : lambda;
+					System.out.println("Lambda: " + lambda + " f(newX): " + f(newX) + " f(oldX): " + f(oldX));
 				}
 			}
 		} while (Math.abs(gradient(newX, h)) > epsilon);
@@ -36,10 +41,8 @@ public class GradientenAbstiegsVerfahren {
 				                  : "Minimum", f(newX), newX);
 	}
 
-	public static void gradientenVerfahren(double x, double y, double lambda, double epsilon, String aufgabe, boolean isMaxVerfahren) {
-		double h = 0.01; //ToDo: Fragen: Wie wähle ich den Wert h für die Differenzenformel?
-		isMaxVerfahren = isMaxVerfahren;
-		aufgabe = aufgabe;
+	public static void gradientenVerfahren(double x, double y, double lambda, double epsilon) {
+		double h = 0.01;
 		double[] oldXY;
 		double[] newXY = {x, y};
 		do {
@@ -49,18 +52,24 @@ public class GradientenAbstiegsVerfahren {
 				newXY[1] = oldXY[1] + lambda * gradient(oldXY, h)[1];
 				if(f(newXY[0], newXY[1]) <= f(oldXY[0], oldXY[1])) {
 					lambda = lambda/2;
+
+					System.out.println("Lambda: " + lambda + " f(newXY): " + f(newXY[0], newXY[1]) + " f(oldXY): " + f(oldXY[0], oldXY[1]));
 				} else {
 					lambda = f(newXY[0] + (lambda*2) * gradient(newXY, h)[0],
 							newXY[1] + (lambda*2) * gradient(newXY, h)[1]) > f(newXY[0], newXY[1]) ? (lambda * 2) : lambda;
+
+					System.out.println("Lambda: " + lambda + " f(newXY): " + f(newXY[0], newXY[1]) + " f(oldXY): " + f(oldXY[0], oldXY[1]));
 				}
 			} else { //Minimum Berechnung
 				newXY[0] = oldXY[0] - lambda * gradient(oldXY, h)[0];
 				newXY[1] = oldXY[1] - lambda * gradient(oldXY, h)[1];
 				if(f(newXY[0], newXY[1]) >= f(oldXY[0], oldXY[1])) {
 					lambda = lambda/2;
+					System.out.println("Lambda: " + lambda + " f(newXY): " + f(newXY[0], newXY[1]) + " f(oldXY): " + f(oldXY[0], oldXY[1]));
 				} else {
 					lambda = f(newXY[0] - (lambda*2) * gradient(newXY, h)[0],
 							newXY[1] - (lambda*2) * gradient(newXY, h)[1]) < f(newXY[0], newXY[1]) ? (lambda * 2) : lambda;
+					System.out.println("Lambda: " + lambda + " f(newXY): " + f(newXY[0], newXY[1]) + " f(oldXY): " + f(oldXY[0], oldXY[1]));
 				}
 			}
 		} while (Math.abs(gradientenNorm(gradient(newXY, h))) > epsilon);

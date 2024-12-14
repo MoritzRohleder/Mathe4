@@ -32,7 +32,7 @@ public class Main {
 			System.out.print("Bitte geben Sie ein ob Maximum oder Minimum berechnet werden soll (max, min).\n");
 			String maxMin = scanner.nextLine();
 			GradientenAbstiegsVerfahren.isMaxVerfahren = maxMin.equalsIgnoreCase("max");
-			GradientenAbstiegsVerfahren.gradientenVerfahren(0, 0.1, 0.0001);
+			GradientenAbstiegsVerfahren.gradientenVerfahren(0, 1, 0.01);
 		} else if(aufgabenAuswahl.equalsIgnoreCase("8.3")) {
 			System.out.print("Bitte geben Sie die Funktion ein, die Sie berechnen wollen (b, c).\n");
 			String aufgabe = scanner.nextLine();
@@ -40,7 +40,7 @@ public class Main {
 			System.out.print("Bitte geben Sie ein ob Maximum oder Minimum berechnet werden soll (max, min).\n");
 			String maxMin = scanner.nextLine();
 			GradientenAbstiegsVerfahren.isMaxVerfahren = maxMin.equalsIgnoreCase("max");
-			GradientenAbstiegsVerfahren.gradientenVerfahren(0, 0.1, 0.0001);
+			GradientenAbstiegsVerfahren.gradientenVerfahren(0, 0, 0.1, 0.01);
 		} else {
 			System.out.println("Bitte geben Sie 8.2 oder 8.3 ein.");
 		}
