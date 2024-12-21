@@ -5,6 +5,7 @@ import me.moritzrohleder.Uebung7.NumerischeIntegrationMenu;
 import me.moritzrohleder.UebungAcht.GradientenAbstiegsVerfahren;
 import me.moritzrohleder.UebungNeun.EulerschesStreckenzugverfahren;
 import me.moritzrohleder.UebungNeun.RungeKuttaVerfahren;
+import me.moritzrohleder.UebungZehn.ZahlenUmrechnung;
 
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.print("Willkommen zu den Programmier-Aufgaben des Moduls Mathe 4.\n"
-		                 + "Bitte wählen Sie aus, ob sie die Aufgabe 7, 8 oder 9 sehen wollen.\n");
+		                 + "Bitte wählen Sie aus, ob sie die Aufgabe 7, 8, 9 oder 10 sehen wollen.\n");
 		String aufgabenAuswahl = scanner.nextLine();
 		if(aufgabenAuswahl.equalsIgnoreCase("7")) {
 			uebungSieben();
@@ -22,6 +23,8 @@ public class Main {
 			uebungAcht();
 		} else if(aufgabenAuswahl.equalsIgnoreCase("9")) {
 			uebungNeun();
+		} else if(aufgabenAuswahl.equalsIgnoreCase("10")) {
+			uebungZehn();
 		} else {
 			System.out.println("Bitte geben Sie 7, 8 oder 9 ein.");
 		}
@@ -77,6 +80,35 @@ public class Main {
 			RungeKuttaVerfahren.rungeKuttaVerfahren(x0, xN, 0.05, 1);
 		} else {
 			System.out.print("Bitte geben Sie a) oder b) an.");
+		}
+	}
+
+	public static void uebungZehn() {
+		System.out.print("Willkommen zu den Programmier-Aufgabe der Übung 10 des Moduls Mathe 4.\n"
+		                 + "Bitte wählen Sie aus, ob sie Aufgabe a), b) oder c) sehen wollen.\n");
+		String aufgabenAuswahl = scanner.nextLine();
+		if(aufgabenAuswahl.equalsIgnoreCase("a)")) {
+			System.out.print("Bitte geben Sie die Zahl (n) ein, die Sie umrechnen wollen.\n");
+			int n = scanner.nextInt();
+			System.out.print("Bitte geben Sie die Basis (b) ein, in die Sie umrechnen wollen.\n");
+			int b = scanner.nextInt();
+			System.out.println("Das Ergebnis ist: " + ZahlenUmrechnung.umrechnungDezimalBAdisch(n, b));
+		} else if(aufgabenAuswahl.equalsIgnoreCase("b)")) {
+			System.out.print("Bitte geben Sie die Zahl (x) ein, die Sie umrechnen wollen.\n");
+			int x = scanner.nextInt();
+			System.out.print("Bitte geben Sie die Basis (b) ein, welche die Zahl hat.\n");
+			int b = scanner.nextInt();
+			System.out.println("Das Ergebnis ist: " + ZahlenUmrechnung.umrechnungBAdischDezimal(x, b));
+		} else if(aufgabenAuswahl.equalsIgnoreCase("c)")) {
+			System.out.print("Bitte geben Sie die Zahl (x) ein, die Sie umrechnen wollen.\n");
+			int x = scanner.nextInt();
+			System.out.print("Bitte geben Sie die Basis (b1) ein, welche die Zahl hat.\n");
+			int b1 = scanner.nextInt();
+			System.out.print("Bitte geben Sie die Basis (b2) ein, in die Sie umrechnen wollen.\n");
+			int b2 = scanner.nextInt();
+			System.out.println("Das Ergebnis ist: " + ZahlenUmrechnung.umrechnung(x, b1, b2));
+		} else {
+			System.out.print("Bitte geben Sie a), b) oder c) an.");
 		}
 	}
 }
