@@ -6,6 +6,9 @@ import me.moritzrohleder.UebungAcht.GradientenAbstiegsVerfahren;
 import me.moritzrohleder.UebungNeun.EulerschesStreckenzugverfahren;
 import me.moritzrohleder.UebungNeun.RungeKuttaVerfahren;
 import me.moritzrohleder.UebungZehn.ZahlenUmrechnung;
+import me.moritzrohleder.UebungZwoelf.ChinesischerRestsatz;
+import me.moritzrohleder.UebungZwoelf.EulerschePhiFunktion;
+import me.moritzrohleder.UebungZwoelf.LineareGleichungen;
 import me.moritzrohleder.uebungElf.DiophantischeGleichung;
 import me.moritzrohleder.uebungElf.GroessterGemeinsamerTeiler;
 import me.moritzrohleder.uebungElf.Primfaktorzerlegung;
@@ -23,8 +26,24 @@ public class Main {
 	 * @param args Die Argumente die beim Starten des Programms übergeben werden.
 	 */
 	public static void main(String[] args) {
+		boolean wiederholen = true;
+		while(wiederholen) {
+			uebungsAuswahl();
+			System.out.print("Möchten Sie eine weitere Aufgabe sehen? (ja, nein)\n");
+			scanner.nextLine();
+			String weiter = scanner.nextLine();
+			if(weiter.equalsIgnoreCase("nein")) {
+				wiederholen = false;
+			}
+		}
+	}
+
+	/**
+	 * Methode um die Auswahl der Übungen zu starten.
+	 */
+	public static void uebungsAuswahl() {
 		System.out.print("Willkommen zu den Programmier-Aufgaben des Moduls Mathe 4.\n"
-		                 + "Bitte wählen Sie aus, ob sie die Aufgabe 7, 8, 9, 10 oder 11 sehen wollen.\n");
+				+ "Bitte wählen Sie aus, ob sie die Aufgabe 7, 8, 9, 10, 11 oder 12 sehen wollen.\n");
 		String aufgabenAuswahl = scanner.nextLine();
 		if(aufgabenAuswahl.equalsIgnoreCase("7")) {
 			uebungSieben();
@@ -36,8 +55,10 @@ public class Main {
 			uebungZehn();
 		} else if(aufgabenAuswahl.equalsIgnoreCase("11")) {
 			uebungElf();
-		}else {
-			System.out.println("Bitte geben Sie 7, 8 oder 9 ein.");
+		} else if(aufgabenAuswahl.equalsIgnoreCase("12")) {
+			uebungZwoelf();
+		} else {
+			System.out.println("Bitte geben Sie 7, 8, 9, 10, 11 oder 12 ein.");
 		}
 	}
 
@@ -46,7 +67,7 @@ public class Main {
 	 */
 	public static void uebungSieben() {
 		System.out.print("Willkommen zu den Programmier-Aufgaben der Übung 7 des Moduls Mathe 4.\n"
-		                 + "Bitte wählen Sie aus, ob sie Aufgabe 1c) oder 2c) sehen wollen.\n");
+				+ "Bitte wählen Sie aus, ob sie Aufgabe 1c) oder 2c) sehen wollen.\n");
 		String aufgabenAuswahl = scanner.nextLine();
 		if(aufgabenAuswahl.equalsIgnoreCase("1c")) {
 			NewtonMenu.menu();
@@ -62,7 +83,7 @@ public class Main {
 	 */
 	public static void uebungAcht() {
 		System.out.print("Willkommen zu den Programmier-Aufgaben der Übung 8 des Moduls Mathe 4.\n"
-		                 + "Bitte wählen Sie aus, ob sie Aufgabe 8.2 oder 8.3 sehen wollen.\n");
+				+ "Bitte wählen Sie aus, ob sie Aufgabe 8.2 oder 8.3 sehen wollen.\n");
 		String aufgabenAuswahl = scanner.nextLine();
 		System.out.print("Bitte geben Sie die Funktion ein, die Sie berechnen wollen (b, c).\n");
 		String aufgabe = scanner.nextLine();
@@ -88,7 +109,7 @@ public class Main {
 	 */
 	public static void uebungNeun() {
 		System.out.print("Willkommen zu den Programmier-Aufgaben der Übung 9 des Moduls Mathe 4.\n"
-		                 + "Bitte wählen Sie aus, ob sie Aufgabe a) oder b) sehen wollen.\n");
+				+ "Bitte wählen Sie aus, ob sie Aufgabe a) oder b) sehen wollen.\n");
 		String aufgabenAuswahl = scanner.nextLine();
 		if(aufgabenAuswahl.equalsIgnoreCase("a)")) {
 			double x0 = 0;
@@ -108,7 +129,7 @@ public class Main {
 	 */
 	public static void uebungZehn() {
 		System.out.print("Willkommen zu den Programmier-Aufgabe der Übung 10 des Moduls Mathe 4.\n"
-		                 + "Bitte wählen Sie aus, ob sie Aufgabe a), b) oder c) sehen wollen.\n");
+				+ "Bitte wählen Sie aus, ob sie Aufgabe a), b) oder c) sehen wollen.\n");
 		String aufgabenAuswahl = scanner.nextLine();
 		if(aufgabenAuswahl.equalsIgnoreCase("a)")) {
 			System.out.print("Bitte geben Sie die Zahl (n) ein, die Sie umrechnen wollen.\n");
@@ -148,9 +169,12 @@ public class Main {
 			System.out.print("Bitte geben Sie die zweite Zahl ein von welcher der ggt berechnet werden soll.\n");
 			int b = scanner.nextInt();
 			int[] ergebnis = GroessterGemeinsamerTeiler.erweiterterEuklidischerAlgorithmus(a, b);
-			System.out.println("Der ggT von " + a + " und " + b + " ist " + ergebnis[0] + " und die Koeffizienten x und y sind " + ergebnis[1] + " und " + ergebnis[2] + ".");
+			System.out.println(
+					"Der ggT von " + a + " und " + b + " ist " + ergebnis[0] + " und die Koeffizienten x und y sind "
+							+ ergebnis[1] + " und " + ergebnis[2] + ".");
 		} else if(aufgabenAuswahl.equalsIgnoreCase("2")) {
-			System.out.print("Bitte geben Sie die Zahl ein von welcher die Primfaktorzerlegung berechnet werden soll.\n");
+			System.out.print(
+					"Bitte geben Sie die Zahl ein von welcher die Primfaktorzerlegung berechnet werden soll.\n");
 			int n = scanner.nextInt();
 			LinkedList<Integer> primfaktoren = Primfaktorzerlegung.primfaktorzerlegung(n);
 			StringBuilder sb = new StringBuilder("Die Primfaktorzerlegung von " + n + " ist: ");
@@ -169,7 +193,60 @@ public class Main {
 			System.out.print("Bitte geben Sie den Wert der Gleichung ein.\n");
 			int c = scanner.nextInt();
 			int[] loesung = DiophantischeGleichung.diophantischeGleichung(a, b, c);
-			System.out.println("Die Lösung der diophantischen Gleichung " + a + "x + " + b + "y = " + c + " ist x = " + loesung[0] + " und y = " + loesung[1] + ".");
+			System.out.println(
+					"Die Lösung der diophantischen Gleichung " + a + "x + " + b + "y = " + c + " ist x = " + loesung[0]
+							+ " und y = " + loesung[1] + ".");
+		} else {
+			System.out.print("Bitte geben Sie 1, 2 oder 3 an.");
+		}
+	}
+
+	/**
+	 * Methode um die Aufgaben der Übung 12 zu starten.
+	 */
+	public static void uebungZwoelf() {
+		System.out.print("Willkommen zu den Programmier-Aufgaben der Übung 12 des Moduls Mathe 4.\n"
+				+ "Bitte wählen Sie aus, ob sie Aufgabe 1, 2 oder 3 sehen wollen.\n");
+		String aufgabenAuswahl = scanner.nextLine();
+		if(aufgabenAuswahl.equalsIgnoreCase("1")) {
+			System.out.print("Bitte geben Sie den Koeffizienten von x ein.\n");
+			int a = scanner.nextInt();
+			System.out.print("Bitte geben Sie die linke Seite der Gleichung ein.\n");
+			int b = scanner.nextInt();
+			System.out.print("Bitte geben Sie den Modulo-Wert ein.\n");
+			int n = scanner.nextInt();
+			int[] ergebnisse = LineareGleichungen.lineareGleichungInZ(a, b, n);
+			if(ergebnisse.length == 0) {
+				System.out.println("Es gibt keine Lösung für die Gleichung " + a + "x = " + b + " mod " + n + ".");
+			} else {
+				System.out.print("Die Lösungen der Gleichung " + a + "x = " + b + " mod " + n + " sind: ");
+				System.out.print("x0 = " + ergebnisse[0] + "\n" + "Die Lösungsmenge ist: {");
+				for(int i = 1; i < ergebnisse.length; i++) {
+					System.out.print(ergebnisse[i]);
+					if(i != ergebnisse.length - 1) {
+						System.out.print(", ");
+					}
+				}
+				System.out.println("}");
+			}
+		} else if(aufgabenAuswahl.equalsIgnoreCase("2")) {
+			System.out.println("Bitte geben Sie die Anzahl der Gleichungen ein.");
+			int anzahl = scanner.nextInt();
+			int[] a = new int[anzahl];
+			int[] n = new int[anzahl];
+			for(int i = 0; i < anzahl; i++) {
+				System.out.print("Bitte geben Sie den Wert a" + (i + 1) + " ein.\n");
+				a[i] = scanner.nextInt();
+				System.out.print("Bitte geben Sie den Modulo-Wert n" + (i + 1) + " ein.\n");
+				n[i] = scanner.nextInt();
+			}
+			int x = ChinesischerRestsatz.chinesischerRestsatz(a, n);
+			System.out.println("Die Lösung des chinesischen Restsatzes ist x = " + x + ".");
+		} else if(aufgabenAuswahl.equalsIgnoreCase("3")) {
+			System.out.print("Bitte geben Sie die Zahl für die die Eulersche Phi-Funktion berechnet werden soll.\n");
+			int n = scanner.nextInt();
+			int phi = EulerschePhiFunktion.eulerschePhiFunktion(n);
+			System.out.println("Die Eulersche Phi-Funktion von " + n + " ist " + phi + ".");
 		} else {
 			System.out.print("Bitte geben Sie 1, 2 oder 3 an.");
 		}
